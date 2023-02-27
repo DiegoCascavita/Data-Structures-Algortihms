@@ -16,5 +16,3 @@ let countCharacters = (str)=>{
 }
 console.log(countCharacters('Eliana'))
 
-
-|
