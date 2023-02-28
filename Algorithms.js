@@ -20,7 +20,22 @@ console.log(countCharacters('Eliana'))
 //                        FREQUENCY COUNTER
 
 //*write a function called same which compare 2 arrays, should return true if every value in the array es el resultado al cuadrado del segundo. *//
-
+//------------------------------
+function same(arr1,arr2){
+  if( arr1.length != arr2.length){
+    return false
+  }
+  for(let i = 0; i < arr1.length ; i++){
+    let correctIndex = arr2.indexOf(arr1[i] **2)
+    if(correctIndex === -1){
+      return false
+    }
+    arr2.splice(correctIndex, 1)
+  }
+  return true
+}
+console.log(same([1,2,3],[1,4,9,3,3]))
+//-------------------------------------------------------------
 function same(arr1, arr2) {
     if (arr1.length !== arr2.length) {
       return false;
@@ -50,4 +65,17 @@ function same(arr1, arr2) {
   
     return true;
   }
-console.log(same([1,2,3],[1,4,9            ]))
+console.log(same([1,2,3],[1,4,9]))
+//ANAGRAM
+/**determine if the arr2 containt the same characters of the arr1 **/
+function anagram(arr1,arr2){
+  if (arr1.length !== arr2.length){
+    return false
+  } 
+  let str1 = arr1.sort().toString()
+  let str2 = arr2.sort().toString()
+
+  return str1 === str2
+}
+console.log(anagram(["hola"], ["aloh"]))
+console.log(anagram([1, 2, 3], [4, 5, 6]))
