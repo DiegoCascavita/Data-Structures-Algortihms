@@ -18,7 +18,11 @@ let countCharacters = (str)=>{
 // console.log(countCharacters('Eliana'))
 //Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
 function sameFrequency(num1, num2){
-  return [...num1.toString()].sort().join('') === [...num2.toString()].sort().join('')
+  return [...num1.toString()]
+  .sort()
+  .join('') === [...num2.toString()]
+  .sort()
+  .join('')
 }
 console.log(sameFrequency(123,321))
 //-----------------------------PATERNS
@@ -115,3 +119,21 @@ function validAnagram(arr1, arr2) {
 }
 // {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
 // console.log(validAnagram('anagram', 'nagaram'))
+
+
+//Write a function called isSubsequence which takes in two strings and checks whether the characters in the first string form a subsequence of the characters in the second string. In other words, the function should check whether the characters in the first string appear somewhere in the second string, without their order changing.
+function isSubsequence(str1, str2) {
+  let i = 0; // initialize pointer i to 0
+  let j = 0; // initialize pointer j to 0
+  
+  while (i < str1.length && j < str2.length) { // loop while both pointers are within bounds
+    if (str1[i] === str2[j]) { // if the characters at the current indices match
+      i++; // advance pointer i
+    }
+    j++; // always advance pointer j
+  }
+  
+  return i === str1.length; // return true if index [i] reached the end of the string, that means that all characters was found
+}
+console.log(isSubsequence('hello', 'hello world'))
+ // true
