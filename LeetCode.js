@@ -73,7 +73,7 @@ function fizzBuzz(n) {
       } else if (i % 5 === 0) {
         arr.push("Buzz")
       } else {
-        arr.push(`${i}`)//to ['1','2']
+        arr.push(`${i}`)//to print ['1','2']
       }
     }
     return arr;
