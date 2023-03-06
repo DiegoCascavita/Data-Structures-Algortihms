@@ -41,9 +41,7 @@ function romanToInt(str){
 // --------------------------------------------------------
 /* Longest Common Prefix
 
-Write a function to find the longest common prefix string amongst an array 
-of strings.
-If there is no common prefix, return an empty string "".
+Write a function to find the longest common prefix string among an array of strings.If there is no common prefix, return an empty string "".
 Example 1:
 
  Input: strs = ["flower","flow","flight"]
@@ -80,3 +78,13 @@ function fizzBuzz(n) {
   }
   
 console.log(fizzBuzz(12))
+
+// POWER OF OR EXPONENTIAL
+function power(base, exponent){
+  let result  = 1
+  for(i = 0; i < exponent; i++){
+    result *= base  
+  }
+  return result
+}
+console.log(power(3,3))
