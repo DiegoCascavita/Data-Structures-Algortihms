@@ -79,12 +79,3 @@ function fizzBuzz(n) {
   
 console.log(fizzBuzz(12))
 
-// POWER OF OR EXPONENTIAL
-function power(base, exponent){
-  let result  = 1
-  for(i = 0; i < exponent; i++){
-    result *= base  
-  }
-  return result
-}
-console.log(power(3,3))
