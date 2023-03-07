@@ -10,7 +10,7 @@ var isPalindrome = function(x) { //1.declaramos una f(x)
     .reverse()                   //4. reverse
     .join('');                   //5. join letters
 };
-//console.log(isPalindrome('OSo'))
+// console.log(isPalindrome('OSo'))
 // --------------------------------------------------------------------
 /* Roman to Integer*/
 function romanToInt(str){
@@ -58,7 +58,7 @@ function LongestCommonPrefix(strs){
     }
     return strs[0];
 };
-console.log(LongestCommonPrefix(["flower","flow","flight"]));
+// console.log(LongestCommonPrefix(["flower","flow","flight"]));
 
 //FIZZ BUZZ
 function fizzBuzz(n) {
@@ -77,5 +77,23 @@ function fizzBuzz(n) {
     return arr;
   }
   
-console.log(fizzBuzz(12))
+// console.log(fizzBuzz(12))
 
+//fibonacci with recursion
+function fib(n) {
+  if (n <= 2) {
+    return 1;
+  }
+  const result = fib(n - 1) + fib(n - 2);
+  return result;
+}
+console.log(fib(9));
+//fibonacci with iteration
+const fibonacci = (n) =>{
+  const fib = [0,1]
+  for( let i = 2; i <= n; i++){
+      fib[i] = fib[i - 2] + fib[i - 1] 
+  }
+  return fib[n]
+} 
+console.log(fibonacci(9))
