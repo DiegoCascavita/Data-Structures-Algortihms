@@ -1,5 +1,10 @@
-function capitalizeWords (arr) {
-  return arr.map(str => str.toUpperCase())
+function linearSearch(arr, val){
+  for(let i = 0; i < arr.length; i ++){
+      if(arr[i] === val){
+          return i
+      } 
+  }
+  return -1
 }
-console.log(capitalizeWords(['i', 'am', 'learning', 'recursion']))
+console.log(linearSearch([10, 15, 20, 25, 30], 15))
 
