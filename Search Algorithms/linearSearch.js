@@ -11,5 +11,4 @@ function linearSearch(arr, val){
     }
     return -1
 }
-console.log(linearSearch([10, 15, 20, 25, 30], 15)
-)
+console.log(linearSearch([10, 15, 20, 25, 30], 15))
