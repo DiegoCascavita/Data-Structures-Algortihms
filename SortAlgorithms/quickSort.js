@@ -28,6 +28,81 @@ function pivot(arr, start = 0, end = arr.length - 1) {
           quickSort(arr,pivotIndex+1,right);
         }
        return arr;
-  } 
-             
+  }   
 console.log(quickSort([100,-3,2,4,6,9,1,2,5,3,23]))
+
+
+
+
+
+//QUICKSORT WITH MEDIAN OF THE 1ST,LAST AND MIDDLE ELEMENT
+
+function quicksort_median3(arr) {
+    if (arr.length <= 1) {
+      return arr;
+    }
+  
+    // Choose pivot as the median of the first, middle, and last element
+    const mid = Math.floor(arr.length / 2);
+    const first = arr[0];
+    const last = arr[arr.length - 1];
+    const pivot = [first, arr[mid], last].sort((a, b) => a - b)[1];
+  
+    // Partition the array
+    const left = [];
+    const right = [];
+    const equal = [];
+    for (let i = 0; i < arr.length; i++) {
+      const x = arr[i];
+      if (x < pivot) {
+        left.push(x);
+      } else if (x > pivot) {
+        right.push(x);
+      } else {
+        equal.push(x);
+      }
+    }
+  
+    // Recursively sort the left and right partitions
+    const sortedLeft = quicksort_median3(left);
+    const sortedRight = quicksort_median3(right);
+  
+    // Combine the sorted partitions with the pivot element
+    return sortedLeft.concat(equal, sortedRight);
+  }
+
+
+
+
+  //QUICKSORT WITH RANDOM PIVOT
+  //to avoid the minimum or maximum value
+
+  function quicksort(arr) {
+    if (arr.length <= 1) {
+      return arr;
+    }
+  
+    const pivotIndex = Math.floor(Math.random() * arr.length);
+    const pivot = arr[pivotIndex];
+    const left = [];
+    const right = [];
+  
+    for (let i = 0; i < arr.length; i++) {
+      if (i === pivotIndex) {
+        continue;
+      }
+  
+      if (arr[i] < pivot) {
+        left.push(arr[i]);
+      } else {
+        right.push(arr[i]);
+      }
+    }
+  
+    return [...quicksort(left), pivot, ...quicksort(right)];
+  }
+  
+  // Example usage:
+  const arr = [5, 3, 8, 4, 2];
+  const sortedArr = quicksort(arr);
+  console.log(sortedArr); // [2, 3, 4, 5, 8]
