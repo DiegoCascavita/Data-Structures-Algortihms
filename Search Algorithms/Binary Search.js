@@ -1,7 +1,11 @@
 //ONLY WORKS IN SORTED ARRAYS, BE SHURE TO SORT THEM !!!!!!!
 
 const binarySearch = (arr, val) => {
+    
+    arr.sort((a,b)=>{ return a - b})
+    
     console.log(arr)
+    
     let left = 0
     let right = arr.length - 1
   
@@ -20,5 +24,5 @@ const binarySearch = (arr, val) => {
     return -1
   }
   
-  console.log(binarySearch([10, 5, 20, 6, 3], 15))
+ console.log(binarySearch([10, 5, 20, 6, 3], 10))
 
