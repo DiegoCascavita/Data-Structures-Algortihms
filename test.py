@@ -1,38 +1,43 @@
-import random
+class ListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
 
-def quicksort_median3(arr):
-    if len(arr) <= 1:
-        return arr
- 
-    # Choose pivot as the median of the first, middle, and last element
-    mid = len(arr) // 2
-    first, last = arr[0], arr[-1]
-    pivot = sorted([first, arr[mid], last])[1]
-    
-    # Partition the array
-    left, right, equal = [], [], []
-    for x in arr:
-        if x < pivot:
-            left.append(x)
-        elif x > pivot:
-            right.append(x)
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+
+    def append(self, val):
+        new_node = ListNode(val)
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
         else:
-            equal.append(x)
-    
-    # Recursively sort the left and right partitions
-    left = quicksort_median3(left)
-    right = quicksort_median3(right)
-    
-    # Combine the sorted partitions with the pivot element
-    return left + equal + right
+            self.tail.next = new_node
+            self.tail = new_node
+        self.size += 1
 
-#---------------------------TEST-------------------
+    def remove(self, val):
+        curr_node = self.head
+        prev_node = None
+        while curr_node:
+            if curr_node.val == val:
+                if not prev_node:
+                    self.head = curr_node.next
+                else:
+                    prev_node.next = curr_node.next
+                self.size -= 1
+                return True
+            prev_node = curr_node
+            curr_node = curr_node.next
+        return False
 
-# Generate a random list of unsorted numbers
-arr = [random.randint(0, 100) for i in range(10)]
-
-# Sort the list using quicksort_median3
-sorted_arr = quicksort_median3(arr)
-
-# Check that the list is sorted correctly
-assert sorted_arr == sorted(arr), f"Sorting failed: expected {sorted(arr)}, but got {sorted_arr}"
+    def get(self, index):
+        if index < 0 or index >= self.size:
+            return None
+        curr_node = self.head
+        for i in range(index):
+            curr_node = curr_node.next
+        return curr_node.val

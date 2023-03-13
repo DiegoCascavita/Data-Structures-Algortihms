@@ -32,6 +32,9 @@ class Student {
         this.scores.push(score)
         return this.scores
     }
+    static Message(){
+        return "Enrolling Students"
+    }
 }
 let firstStudent = new Student('Diego','ElCasca')
 let secondStudent = new Student('Sofia','Guerrero')

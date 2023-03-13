@@ -1,29 +1,57 @@
-function quicksort(arr) {
-  if (arr.length <= 1) {
-    return arr;
+class ListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
   }
-
-  const pivotIndex = Math.floor(Math.random() * arr.length);
-  const pivot = arr[pivotIndex];
-  const left = [];
-  const right = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (i === pivotIndex) {
-      continue;
-    }
-
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
-  }
-
-  return [...quicksort(left), pivot, ...quicksort(right)];
 }
 
-// Example usage:
-const arr = [5, 3, 8, 4, 2];
-const sortedArr = quicksort(arr);
-console.log(sortedArr); // [2, 3, 4, 5, 8]
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  append(val) {
+    const newNode = new ListNode(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.size++;
+  }
+
+  remove(val) {
+    let currNode = this.head;
+    let prevNode = null;
+
+    while (currNode !== null) {
+      if (currNode.val === val) {
+        if (prevNode === null) {
+          this.head = currNode.next;
+        } else {
+          prevNode.next = currNode.next;
+        }
+        this.size--;
+        return true;
+      }
+      prevNode = currNode;
+      currNode = currNode.next;
+    }
+    return false;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.size) {
+      return null;
+    }
+    let currNode = this.head;
+    for (let i = 0; i < index; i++) {
+      currNode = currNode.next;
+    }
+    return currNode.val;
+  }
+} 
