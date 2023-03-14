@@ -1,13 +1,12 @@
-let containsDuplicate = function(nums) {
-  nums.sort((a,b)=>{
-      return a - b
-  })
-
-  for(let i = 1; i < nums.length; i ++){
-    if( nums[i] === nums[i-1] ){
-      return true
+const twoSum = (nums,target)=>{
+  for(let i = 0; i < nums.length; i++){
+    for(let j = 1; i = nums.length; j++){
+      if(nums[i] + nums[j] === target){
+        return [i, j]
+      }
     }
   }
   return false
 }
-console.log(containsDuplicate([1,2,3,1]))
+
+console.log(twoSum([2,7,11,15],9))
