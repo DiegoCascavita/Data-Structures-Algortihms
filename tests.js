@@ -1,15 +1,11 @@
-function isPalindrome(s){
-  s = s.toLowerCase().replace(/[^a-z0-9]/g,"")
-
-  let left = 0
-  let right = s.length - 1
-  while( left < right){
-    if( s[left] != s[right]){
-      return false
+const twoSum = function(numbers, target){
+  for(let i = 0; i < numbers.length; i++){
+    for(let j = i + 1; j < numbers.length; j++){
+      if(numbers[i] + numbers[j] === target){
+        return [i + 1 ,j + 1]
+      }
     }
-    left ++
-    right --
   }
-  return true
+  return false
 }
-console.log(isPalindrome("A man, a plan, a canal: Panama"))
+console.log(twoSum([2,7,11,15],9))
