@@ -17,7 +17,8 @@ w/gi - a-zA-Z, i="more cases"g"upper and low cases"
 {3,5} how many times it repeat
 "s" white space characters
 ? optional letter(can be ignored)
-\ = literally meaning of the sigh*/
+\ = literally meaning of the sigh
+g - means all the ocurrences not only 1*/
 
                                 debug
 console.log(typeof "");//string

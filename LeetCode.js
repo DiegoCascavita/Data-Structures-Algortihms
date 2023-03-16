@@ -135,4 +135,28 @@ function groupAnagrams(strs) {
   }//return the hashtable
   return Object.values(hashTable)
 }
-console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))   
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))  
+
+/*125. Valid Palindrome
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+Example 1:
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.*/
+
+function isPalindrome(s){
+  s = s.toLowerCase().replace(/[^a-z0-9]/g,"")
+
+  let left = 0
+  let right = s.length - 1
+  while( left < right){
+    if( s[left] != s[right]){
+      return false
+    }
+    left ++
+    right --
+  }
+  return true
+}
+console.log(isPalindrome("A man, a plan, a canal: Panama"))

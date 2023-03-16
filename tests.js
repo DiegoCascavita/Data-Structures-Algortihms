@@ -1,22 +1,15 @@
-/*
-Example 1:
+function isPalindrome(s){
+  s = s.toLowerCase().replace(/[^a-z0-9]/g,"")
 
-Input: strs = ["eat","tea","tan","ate","nat","bat"]
-Output: [["bat"],["nat","tan"],["ate","eat","tea"]]*/
-
-function groupAnagrams(strs) {
-  //1. create a hashmap
-  const hashTable = {}
-  //2. iterate over the object
-  for(let str of strs){
-  //3. separate and sort each character
-    const sortedStr = str.split("").sort().join()
-  //4. if the sortedString isn´t in hashtable add it in an array
-    if(!hashTable[sortedStr]){
-      hashTable[sortedStr] = []
-    }//if it is push the str into the array
-    hashTable[sortedStr].push(str)
-  }//return the hashtable
-  return Object.values(hashTable)
+  let left = 0
+  let right = s.length - 1
+  while( left < right){
+    if( s[left] != s[right]){
+      return false
+    }
+    left ++
+    right --
+  }
+  return true
 }
-console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+console.log(isPalindrome("A man, a plan, a canal: Panama"))
