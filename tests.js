@@ -1,11 +1,12 @@
-const twoSum = function(numbers, target){
-  for(let i = 0; i < numbers.length; i++){
-    for(let j = i + 1; j < numbers.length; j++){
-      if(numbers[i] + numbers[j] === target){
-        return [i + 1 ,j + 1]
-      }
+const twoSum = function(numbers, target) {
+  const map = new Map();
+  for (let i = 0; i < numbers.length; i++) {
+    const complement = target - numbers[i];
+    if (map.has(complement)) {
+      return [map.get(complement) + 1, i + 1];
     }
+    map.set(numbers[i], i);
   }
-  return false
-}
-console.log(twoSum([2,7,11,15],9))
+  return false;
+};
+console.log(twoSum([11,15,2,7,],9))
