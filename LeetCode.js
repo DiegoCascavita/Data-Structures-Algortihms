@@ -160,3 +160,24 @@ function isPalindrome(s){
   return true
 }
 console.log(isPalindrome("A man, a plan, a canal: Panama"))
+
+/*Example 1:
+
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].*/
+
+function twoSum(numbers, target){
+  const map = new Map()
+
+  for(let i = 0; i < numbers.length; i){
+    const complement = target - numbers[i]
+    if(map.has(complement)){
+      return [map.get(complement) + 1, i + 1]
+    }
+    map.set(numbers[i], i)
+  }
+}
+
+console.log(twoSum([2,7,11,15,],9))
+console.log(twoSum([2,3,4],6))

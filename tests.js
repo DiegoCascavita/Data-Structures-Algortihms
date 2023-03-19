@@ -1,15 +1,19 @@
-function twoSum(numbers, target){
-  const map = new Map()
 
-  for(let i = 0; i < numbers.length; i){
-    const complement = target - numbers[i]
-    if(map.has(complement)){
-      return [map.get(complement) + 1, i + 1]
+const evenOddBit = function(n) {
+    const binary = n.toString(2);
+  let even = 0;
+  let odd = 0;
+  
+  binary.split('').forEach((digit, i) => {
+    if (digit === '1') {
+      if (i % 2 === 0) {
+        even++;
+      } else {
+        odd++;
+      }
     }
-    map.set(numbers[i], i)
-  }
+  });
+  
+  return [even, odd];
 }
-
-console.log(twoSum([2,7,11,15,],9))
-console.log(twoSum([2,3,4],6))
-// console.log(twoSum([[-1,0],-1))
+console.log(evenOddBit(2))

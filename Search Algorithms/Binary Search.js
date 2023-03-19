@@ -24,5 +24,5 @@ const binarySearch = (arr, val) => {
     return -1
   }
   
- console.log(binarySearch([10, 5, 20, 6, 3], 10))
+ console.log(binarySearch([-1,0,3,5,9,12], 9))
 
