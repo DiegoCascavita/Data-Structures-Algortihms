@@ -1,26 +1,21 @@
-var search = function(nums, target) {
-  let left = 0, right = nums.length - 1; 
+const search = (nums, target)=>{
+    let start = 0, end = nums.length - 1
 
-  
+    while( start <= end){
+        let mid = Math.floor((start + end) / 2)
 
-  while (left <= right) {
-      let mid = Math.floor((left + right) / 2); 
-      if (nums[mid] === target) {
-          return mid; 
-      } else if (nums[mid] >= nums[left]) { // left side is sorted 
-          if (target >= nums[left] && target < nums[mid]) { // target is in the left side 
-              right = mid - 1; 
-          } else { // target is in the right side 
-              left = mid + 1; 
-          }
-      } else { // right side is sorted 
-          if (target > nums[mid] && target <= nums[right]) { // target is in the right side  
-              left = mid + 1;  
-          } else { // target is in the left side  
-              right = mid - 1;  
-          }
-      }
-  }
-  return -1;  
+        if(nums[mid] === target) return mid //return index 
+
+        if(nums[start] <= nums[mid]){ // browse in left side 
+            if(nums[start] <= target && target < nums[mid]) end = mid -1 //if target is btw start and mid
+            else start = mid + 1 // else go to right
+        } else { //browse in right side 
+            if(nums[end] >= target && target > nums[mid]) start = mid + 1 // if taget is btw mid and end
+            else end = mid -1 // else go to left
+        }
+    }
+    return -1
 }
-console.log(search([4,5,6,7,0,1,2],0))
+  
+  console.log(search([5,1,3], 0))
+  

@@ -12,3 +12,8 @@ function linearSearch(arr, val){
     return -1
 }
 console.log(linearSearch([10, 15, 20, 25, 30], 15))
+
+//methods aproach !!!! guhuuuuuuu
+const search = (nums, target)=>{
+    return nums.indexOf(target)
+}
