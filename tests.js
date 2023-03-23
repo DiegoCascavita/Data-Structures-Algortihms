@@ -1,22 +1,20 @@
-function threeSum(nums) {
-    nums.sort((a, b) => a - b)
-    const results = []
-    //to avoid duplicates 
-    for (let i = 0; i < nums.length; i++) {
-        let j = i + 1
-        let k = i + 2
-        // avoid duplicates for i
-        if (i > 0 && nums[i] === nums[i - 1]) continue;
-            // avoid duplicates for j
-        if (j > i + 1 && nums[j] === nums[j - 1]) continue;
-                // avoid duplicates for k
-        if (k > j + 1 && nums[k] === nums[k - 1]) continue;
-        const sum = nums[i] + nums[j] + nums[k]
-        if (sum === 0){
-             results.push([nums[i], nums[j], nums[k]])
-        }
+const maxArea = (height)=>{
+    //we define 2 pointers going inside and the result var
+    let start = 0
+    let end = height.length -1
+    let result = 0
+
+    while(start < end){
+        //we calculate the smaller side
+        let smallestSide = Math.min(height[start], height[end])
+        //we calculate the area b * h ((base end - start) * height)
+        let area = (end - start) * smallestSide
+        //we store the highest area
+        if( area > result) result = area
+        //we move the smallest pointer
+        if( height[start] > height[end]) end --
+        else start ++
     }
-    return results
+    return result
 }
-console.log(threeSum([-1,0,1,2,-1,-4]))
-  
+console.log(maxArea([4,3,2,1,4]))
