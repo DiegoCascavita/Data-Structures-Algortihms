@@ -251,3 +251,23 @@ const maxArea = (height)=>{
   }
   return result
 }
+/*
+The function initializes a variable maxVal to -1.
+The function iterates through the input array arr from right to left using a for loop.
+In each iteration of the loop, it does the following:
+It stores the value of the current element arr[i] in a temporary variable temp.
+It replaces the current element with the current value of maxVal.
+It updates the maxVal variable to be the maximum of its current value and the previous value of temp.
+After completing the loop, the function returns the modified input array arr.
+*/
+
+function replaceElements(arr) {
+  let maxVal = -1
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let temp = arr[i]
+    arr[i] = maxVal
+    maxVal = Math.max(maxVal, temp)
+  }
+  return arr
+}
+console.log(replaceElements([17,18,5,4,6,1]))
