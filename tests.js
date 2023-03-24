@@ -1,11 +1,11 @@
-function containsDuplicate(nums){
-    nums.sort((a,b)=> a - b)
-    
-    for(let i = 0; i < nums.length; i++){
-        if(nums[i] === nums[i + 1]) return true
-        else return false
+function replaceElements(arr) {
+    let max = -1;
+    for (let i = arr.length - 1; i >= 0; i--) {
+      let temp = arr[i];
+      arr[i] = max;
+      max = Math.max(max, temp);
     }
-}
-
-console.log(containsDuplicate([1,2,3,4]))
+    return arr;
+  }
+console.log(replaceElements([17,18,5,4,6,1]))
 
