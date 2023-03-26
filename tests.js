@@ -1,7 +1,28 @@
-const minimumDifference = function(nums, k) {
-  if(nums.length === 1) return 0 
+/*
+create a helper function to find palindromes
+create a function to splice into a new str
+from 0 to [i] to [i]+1
+*/
 
-  return nums.length - k
+const validPalindrome = (s)=>{
+  for (let i = 0; i < s.length; i++) {
+    const temp = s.slice(0, i) + s.slice(i + 1)
+    if(isPalindrome(temp)) return true
+  }
+  return isPalindrome(s)
 }
-console.log(minimumDifference([90],1))
+function isPalindrome(str){
+  let left = 0
+  let right = str.length -1
+  while( left < right){
+    if(str[left] !== str[right]){
+      return false
+    }
+    left ++
+    right --
+  }
+  return true
+}
+
+console.log(validPalindrome('abc'))
 
