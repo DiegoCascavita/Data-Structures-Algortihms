@@ -1,28 +1,16 @@
 /*
-create a helper function to find palindromes
-create a function to splice into a new str
-from 0 to [i] to [i]+1
+  define the length for each of m & n
+  push nums2[i] in mus1
+  sort them and return
 */
-
-const validPalindrome = (s)=>{
-  for (let i = 0; i < s.length; i++) {
-    const temp = s.slice(0, i) + s.slice(i + 1)
-    if(isPalindrome(temp)) return true
+const merge = function(nums1, m, nums2, n) {
+  nums1.length = m
+  nums2.length = n
+  for( let i = 0; i < nums2.length; i++){
+    nums1.push(nums2[i]) 
   }
-  return isPalindrome(s)
-}
-function isPalindrome(str){
-  let left = 0
-  let right = str.length -1
-  while( left < right){
-    if(str[left] !== str[right]){
-      return false
-    }
-    left ++
-    right --
-  }
-  return true
+  return nums1.sort((a,b)=> a - b)
 }
 
-console.log(validPalindrome('abc'))
+console.log(merge([1,2,3,0,0,0],3,[2,5,6],3))
 
