@@ -1,16 +1,18 @@
-/*
-  define the length for each of m & n
-  push nums2[i] in mus1
-  sort them and return
-*/
-const merge = function(nums1, m, nums2, n) {
-  nums1.length = m
-  nums2.length = n
-  for( let i = 0; i < nums2.length; i++){
-    nums1.push(nums2[i]) 
-  }
-  return nums1.sort((a,b)=> a - b)
-}
+const isPalindrome = function(head) {
+    if(head.length <= 2) return false
+    
+    let i = 0
+    let j = head.length-1
+    while (head[i] < head[j]){
+        if(head[i] != head[j]){
+            return false
+            i ++
+            j--
+        }
+    }
+    return true 
+ }
 
-console.log(merge([1,2,3,0,0,0],3,[2,5,6],3))
-
+ console.log(isPalindrome([1,2]))
+ /*Input: head = [1,2,2,1]
+Output: true */
