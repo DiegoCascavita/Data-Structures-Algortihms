@@ -1,18 +1,13 @@
-const isPalindrome = function(head) {
-    if(head.length <= 2) return false
-    
-    let i = 0
-    let j = head.length-1
-    while (head[i] < head[j]){
-        if(head[i] != head[j]){
-            return false
-            i ++
-            j--
-        }
+const canConstruct = (ransomNote, magazine)=>{
+    //turn string to array to use the every method
+    const a = ransomNote.split("").sort()
+    const b = magazine.split("").sort()
+    for(let i = 0; i < a.length; i++){
+        if(a[i] !== b[i]) return false
     }
-    return true 
- }
+    return true
+}
 
- console.log(isPalindrome([1,2]))
+ console.log(canConstruct("aa","aab"))
  /*Input: head = [1,2,2,1]
 Output: true */
