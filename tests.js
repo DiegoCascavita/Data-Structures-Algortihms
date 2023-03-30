@@ -1,9 +1,22 @@
-function solution(year) {
-    // Calculate the century by dividing the year by 100 and rounding down
-    const century = Math.floor((year - 1) / 100) + 1;
-    return century;
+/*
+    create a counter
+    while until num === 0
+    if num % 2 === 0  counter ++
+    else  num - 1
+    counter ++ 
+ */
+    var numberOfSteps = function(num) {
+      let count = 0
+  
+      while( num !== 0){
+          if( num % 2 === 0){
+              num /= 2
+          } else {
+              num -= 1
+          }
+          count ++
+      }
+      return count
   }
 
- console.log(solution(1905))
- /*Input: head = [1,2,2,1]
-Output: true */
+console.log(numberOfSteps(14))
