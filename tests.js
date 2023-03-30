@@ -1,13 +1,9 @@
-const canConstruct = (ransomNote, magazine)=>{
-    //turn string to array to use the every method
-    const a = ransomNote.split("").sort()
-    const b = magazine.split("").sort()
-    for(let i = 0; i < a.length; i++){
-        if(a[i] !== b[i]) return false
-    }
-    return true
-}
+function solution(year) {
+    // Calculate the century by dividing the year by 100 and rounding down
+    const century = Math.floor((year - 1) / 100) + 1;
+    return century;
+  }
 
- console.log(canConstruct("aa","aab"))
+ console.log(solution(1905))
  /*Input: head = [1,2,2,1]
 Output: true */
