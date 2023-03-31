@@ -1,22 +1,22 @@
 /*
-    create a counter
-    while until num === 0
-    if num % 2 === 0  counter ++
-    else  num - 1
-    counter ++ 
+create a maxWealth var
+create a wealth var
+loop trough the 1st array [i] and [j]
+wealth += accounts[i][j]
+if wealth > max wealth replace it
+return maxWealth
  */
-    var numberOfSteps = function(num) {
-      let count = 0
-  
-      while( num !== 0){
-          if( num % 2 === 0){
-              num /= 2
-          } else {
-              num -= 1
-          }
-          count ++
-      }
-      return count
-  }
+var maximumWealth = function(accounts) {
+    let maxWealth = 0
+    
+    for(let i = 0; i < accounts.length; i ++){
+        let wealth = 0
+        for(let j = 0; j < accounts[i].length; j ++){
+            wealth += accounts[i][j]
+            if( wealth > maxWealth) maxWealth = wealth
+        }
+    }
+    return maxWealth
+}
 
-console.log(numberOfSteps(14))
+ console.log(maximumWealth([[1,2,3],[3,2,1]]))
