@@ -161,10 +161,10 @@ function findGreater(a, b) {
  
 function factorial(n){
   //base case "respuesta esperada"
-  if(n==1 || n==0)
+  if(n == 1 || n == 0)
     return 1;
     // si "n" no es igual a 4 el algoritmo saltara el if
-  else 
+  else   
   return n * factorial(n-1)
 }
 console.log(factorial(4))
@@ -286,7 +286,7 @@ foods.strawberries = 27;
 // Only change code above this line
 console.log(foods);
 
-                                scripting
+                                //scripting
 //1. how to convert celsius to fahrenheit
 function convertCelsiusToFahrenheit(celsius){
   let fahrenheit = celsius*9/5+32;

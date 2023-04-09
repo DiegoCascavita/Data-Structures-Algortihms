@@ -1,19 +1,25 @@
-/*
-make a sliding window up to k
-iterate over the array
-if [i] === [j] return true
-else false
-*/
-function containsNearbyDuplicate(nums, k) {
-
-  for(let i = 0; i < nums.length; i++){
-      // only check up to k
-      for(let j = i + 1; j <= i + k && j < nums.length; j++){
-          if(nums[i] === nums[j]) return true
-      }
-  }   
-  return false
-}
-console.log(containsNearbyDuplicate([99,99],3))
-// console.log(containsNearbyDuplicate([1,2,3,1],3))
-// console.log(containsNearbyDuplicate([1,2,3,1,2,3],2))
+/**
+create a counter
+create a sliding window of size k
+create a temp to sum all the indices in the window
+sum / k = average
+if average >= threshold counter ++
+return counter
+ */
+const numOfSubarrays = (arr, k, threshold) => {
+  let counter = 0;
+  
+  for (let i = 0; i <= arr.length - k; i++) {
+    let temp = 0;  
+    for (let j = i; j < i + k; j++) {
+      temp += arr[j];
+    } 
+    let average = temp / k;
+    
+    if (average >= threshold) {
+      counter++;
+    }
+  }
+  return counter;
+};
+console.log(numOfSubarrays([2,2,2,2,5,5,5,8],3,4))
