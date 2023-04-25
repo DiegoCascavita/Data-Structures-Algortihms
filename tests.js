@@ -1,21 +1,49 @@
-function miniMaxSum(arr) {
-    let minSum = Infinity
-    let maxSum = 0
-    for (let i = 0; i < arr.length; i++) {
-      let sum = 0
-      for (let j = 0; j < arr.length; j++) {
-        if (i !== j) {
-          sum += arr[j]
-        }
-      }
-      if (sum < minSum) {
-        minSum = sum
-      }
-      if (sum > maxSum) {
-        maxSum = sum
-      }
-    }
-    return `${minSum} ${maxSum}`
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
 }
-  
-console.log(miniMaxSum([1, 2, 3, 4, 5]))
+
+/*
+ * Complete the 'birthdayCakeCandles' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY candles as parameter.
+ */
+
+function birthdayCakeCandles(candles) {
+    // Write your code here
+
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const candlesCount = parseInt(readLine().trim(), 10);
+
+    const candles = readLine().replace(/\s+$/g, '').split(' ').map(candlesTemp => parseInt(candlesTemp, 10));
+
+    const result = birthdayCakeCandles(candles);
+
+    ws.write(result + '\n');
+
+    ws.end();
+}
