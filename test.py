@@ -1,43 +1,40 @@
-class ListNode:
-    def __init__(self, val):
-        self.val = val
-        self.next = None
+import heapq
 
-class LinkedList:
+class Graph:
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
-
-    def append(self, val):
-        new_node = ListNode(val)
-        if not self.head:
-            self.head = new_node
-            self.tail = new_node
-        else:
-            self.tail.next = new_node
-            self.tail = new_node
-        self.size += 1
-
-    def remove(self, val):
-        curr_node = self.head
-        prev_node = None
-        while curr_node:
-            if curr_node.val == val:
-                if not prev_node:
-                    self.head = curr_node.next
-                else:
-                    prev_node.next = curr_node.next
-                self.size -= 1
-                return True
-            prev_node = curr_node
-            curr_node = curr_node.next
-        return False
-
-    def get(self, index):
-        if index < 0 or index >= self.size:
-            return None
-        curr_node = self.head
-        for i in range(index):
-            curr_node = curr_node.next
-        return curr_node.val
+        self.nodes = set()
+        self.edges = {}
+        self.weights = {}
+        
+    def add_node(self, node):
+        self.nodes.add(node)
+        self.edges[node] = []
+        
+    def add_edge(self, node1, node2, weight):
+        self.edges[node1].append(node2)
+        self.weights[(node1, node2)] = weight
+        
+    def dijkstra(self, start_node, end_node):
+        distances = {node: float('inf') for node in self.nodes}
+        distances[start_node] = 0
+        pq = [(0, start_node)]
+        previous_nodes = {node: None for node in self.nodes}
+        
+        while len(pq) > 0:
+            current_distance, current_node = heapq.heappop(pq)
+            
+            if current_node == end_node:
+                path = []
+                while current_node is not None:
+                    path.append(current_node)
+                    current_node = previous_nodes[current_node]
+                return path[::-1]
+            
+            for neighbor in self.edges[current_node]:
+                distance = current_distance + self.weights[(current_node, neighbor)]
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    previous_nodes[neighbor] = current_node
+                    heapq.heappush(pq, (distance, neighbor))
+                    
+        return None
