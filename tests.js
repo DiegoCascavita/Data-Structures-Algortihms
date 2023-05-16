@@ -1,13 +1,18 @@
-function product(a, b){
-  var result = 0;
-  if( b == 0 ) return result;
- 
-  for(var x = 0; x < b; x++){
-    result += a;
+const strStr = function(haystack, needle) {
+  if (needle.length === 0) {
+    return 0; // An empty needle is always present at index 0
   }
- 
-  return result;
-}
- 
-console.log( product( 3, 5 ) ); // 15
-console.log( product( 7, 0 ) ); // 0
+
+  for (let i = 0; i <= haystack.length - needle.length; i++) {
+    let j = 0;
+    while (j < needle.length && haystack[i + j] === needle[j]) {
+      j++;
+    }
+
+    if (j === needle.length) {
+      return i; // Found a match, return the index
+    }
+  }
+
+  return -1; // Needle not found in haystack
+};
