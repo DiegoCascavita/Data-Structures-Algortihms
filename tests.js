@@ -1,57 +1,12 @@
-class ListNode {
-    constructor(val) {
-      this.val = val;
-      this.next = null;
-    }
+//given a sorted array of integers, write a funciton that accepts a value, and return the index of this value in the array
+
+function search(arr,num){
+  for( let i = 0; i < arr.length; i++){
+      if(arr[i] === num ){
+          return i
+      }
   }
-  
-  class LinkedList {
-    constructor() {
-      this.head = null;
-      this.tail = null;
-      this.size = 0;
-    }
-  
-    append(val) {
-      const newNode = new ListNode(val);
-      if (!this.head) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.tail.next = newNode;
-        this.tail = newNode;
-      }
-      this.size++;
-    }
-  
-    remove(val) {
-      let currNode = this.head;
-      let prevNode = null;
-  
-      while (currNode !== null) {
-        if (currNode.val === val) {
-          if (prevNode === null) {
-            this.head = currNode.next;
-          } else {
-            prevNode.next = currNode.next;
-          }
-          this.size--;
-          return true;
-        }
-        prevNode = currNode;
-        currNode = currNode.next;
-      }
-      return false;
-    }
-  
-    get(index) {
-      if (index < 0 || index >= this.size) {
-        return null;
-      }
-      let currNode = this.head;
-      for (let i = 0; i < index; i++) {
-        currNode = currNode.next;
-      }
-      return currNode.val;
-    }
-  }
+  return -1
+}
+console.log(search([1,2,3,4,5,6,7,8],3))
+//Binary search
