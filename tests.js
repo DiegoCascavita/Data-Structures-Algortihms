@@ -1,9 +1,13 @@
-//factorialize n number
-function factorial(num) {
-  if (num === 0 || num === 1) {
-    return 1;
-  } else {
-    return num * factorial(num - 1);
+const obj1 = {
+  num: 1,
+  test: [],
+  data: {
+      val: 4,
+      info: {
+          isRight: true,
+          random: 66
+      }
   }
 }
-console.log(factorial(4))
+  
+// console.log(stringifyNumbers(obj1))
