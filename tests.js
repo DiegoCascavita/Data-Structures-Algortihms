@@ -1,32 +1,84 @@
-/**maxSubarraySum
-Given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function.
+// Write a function called stringifyNumbers which takes in an object and finds all of the values which are numbers and converts them to strings. Recursion would be a great way to solve this!
 
-Note that a subarray must consist of consecutive elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100, 300] is not.**/
-
-maxSubarraySum3([100,200,300,400], 2) // 700
-maxSubarraySum3([1,4,2,10,23,3,1,0,20], 4)  // 39 
-maxSubarraySum3([-3,4,0,-2,6,-1], 2) // 5
-maxSubarraySum3([3,-2,7,-4,1,-1,4,-2,1],2) // 5
-maxSubarraySum3([2,3], 3) // null
-
-function maxSubarraySum3(arr,num){
-  if(num > arr.length){
-    return null
+function stringifyNumbers(obj) {
+    const newObj = {};
+  
+    Object.keys(obj).forEach(key => {
+      if (typeof obj[key] === "number") {
+        newObj[key] = obj[key].toString();
+      } else if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
+        newObj[key] = stringifyNumbers(obj[key]);
+      } else {
+        newObj[key] = obj[key];
+      }
+    });
+  
+    return newObj;
   }
-  let maxSum = 0
-  let tempSum = 0
+const obj1 = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+    
+// console.log(stringifyNumbers(obj1))
 
-  for( let i = 0; i < num; i++){
-    maxSum += arr[i]
+// nestedEvenSum
+// Write a recursive function called nestedEvenSum. Return the sum of all even numbers in an object which may contain nested objects.
+function nestedEvenSum(obj) {
+    return Object.keys(obj).reduce((acc, key) => {
+      if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+        acc += obj[key];
+      } else if (typeof obj[key] === 'object') {
+        acc += nestedEvenSum(obj[key]);
+      }
+      return acc;
+    }, 0);
   }
-  tempSum = maxSum
-  for(let i = num; i < arr.length; i++){
-    tempSum = tempSum - arr[i - num] + arr[i]
-    maxSum = Math.max(maxSum, tempSum)
-  }
-  return maxSum
-} 
-console.log(maxSubarraySum3([100,200,300,400], 2))
-/*Este bucle comienza desde el índice num, ya que ya hemos calculado la suma del primer subarreglo de longitud num en el bucle anterior. Continúa hasta el final del arreglo arr.length.
-En cada iteración del bucle, la variable tempSum se actualiza para reflejar la suma del subarreglo actual de longitud num. Restamos el primer elemento del subarreglo anterior (que es arr[i - num]) y agregamos el siguiente elemento (que es arr[i]). Esto "desliza" efectivamente el subarreglo hacia la derecha en una posición.*/
+let obj2 = {
+    a: 2,
+    b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+    c: {c: {c: 2}, cc: 'ball', ccc: 5},
+    d: 1,
+    e: {e: {e: 2}, ee: 'car'}
+}
+// console.log(nestedEvenSum(obj2))
 
+//collectStrings
+// Write a function called collectStrings which accepts an object and returns an array of all the values in the object that have a typeof string
+
+function collectStrings(obj) {
+    let result = [];
+  
+    for (let key in obj) {
+      if (typeof obj[key] === "string") {
+        result.push(obj[key]);
+      } else if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
+        result = result.concat(collectStrings(obj[key]));
+      }
+    }
+    return result;
+}
+let obj = {
+      stuff: "foo",
+      data: {
+          val: {
+              thing: {
+                  info: "bar",
+                  moreInfo: {
+                      evenMoreInfo: {
+                          weMadeIt: "baz"
+                      }
+                  }
+              }
+          }
+      }
+  }
+  
+console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
