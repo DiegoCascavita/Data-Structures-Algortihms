@@ -1,84 +1,113 @@
-// Write a function called stringifyNumbers which takes in an object and finds all of the values which are numbers and converts them to strings. Recursion would be a great way to solve this!
 
-function stringifyNumbers(obj) {
-    const newObj = {};
-  
-    Object.keys(obj).forEach(key => {
-      if (typeof obj[key] === "number") {
-        newObj[key] = obj[key].toString();
-      } else if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
-        newObj[key] = stringifyNumbers(obj[key]);
-      } else {
-        newObj[key] = obj[key];
-      }
-    });
-  
-    return newObj;
-  }
-const obj1 = {
-    num: 1,
-    test: [],
-    data: {
-        val: 4,
-        info: {
-            isRight: true,
-            random: 66
-        }
-    }
-}
-    
-// console.log(stringifyNumbers(obj1))
-
-// nestedEvenSum
-// Write a recursive function called nestedEvenSum. Return the sum of all even numbers in an object which may contain nested objects.
-function nestedEvenSum(obj) {
-    return Object.keys(obj).reduce((acc, key) => {
-      if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
-        acc += obj[key];
-      } else if (typeof obj[key] === 'object') {
-        acc += nestedEvenSum(obj[key]);
-      }
-      return acc;
-    }, 0);
-  }
-let obj2 = {
-    a: 2,
-    b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-    c: {c: {c: 2}, cc: 'ball', ccc: 5},
-    d: 1,
-    e: {e: {e: 2}, ee: 'car'}
-}
-// console.log(nestedEvenSum(obj2))
-
-//collectStrings
-// Write a function called collectStrings which accepts an object and returns an array of all the values in the object that have a typeof string
-
-function collectStrings(obj) {
-    let result = [];
-  
-    for (let key in obj) {
-      if (typeof obj[key] === "string") {
-        result.push(obj[key]);
-      } else if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
-        result = result.concat(collectStrings(obj[key]));
+// --------------------------TWO POINTERS
+// Write a f(x) called sumZero which accepts a sorted array of integers. this function have to find a pair that summed is equal to 0, and return this pair
+function sumZero(arr){
+  for(let i = 0; i < arr.length; i++){
+    for(let j = i+1; j < arr.length; j++){
+      if(arr[i] + arr[j] === 0){
+        return [arr[i], arr[j]]
       }
     }
-    return result;
-}
-let obj = {
-      stuff: "foo",
-      data: {
-          val: {
-              thing: {
-                  info: "bar",
-                  moreInfo: {
-                      evenMoreInfo: {
-                          weMadeIt: "baz"
-                      }
-                  }
-              }
-          }
-      }
   }
-  
-console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
+}
+console.log(sumZero([3,1,2,-3,4,5]))
+
+// other solution //HAVE POSIBLE PROBLEMS
+function sumZero2(arr){
+  let left = 0
+  let right = arr.length -1
+  while(left < right){
+    let sum = arr[left] + arr[right]
+    if(sum === 0){
+      return [arr[left], arr[right]]
+    } else if (sum > 0){
+      right --
+    } else {
+      left ++
+    }
+  }
+}
+console.log(sumZero2([3,1,2,-3,4,5]))
+
+//write a function which accpets a sorted array, and counts the unique values in the array, negative too. 
+function countUniqueValues(arr) {
+  let count = 0;
+  let i = 0;
+  while (i < arr.length) {
+    count++;
+    let j = i + 1;
+    while (j < arr.length && arr[i] === arr[j]) {
+      j++;
+    }
+    i = j;
+  }
+  return count;
+}
+console.log(countUniqueValues([1,1,1,1,1,2]))
+//refactored
+function countUniqueValues2(arr){
+  let i = 0
+  for(var j =1; j < arr.length; j++){
+    if(arr[i] != arr[j]){
+      i ++
+      arr[i] = arr[j]
+    }
+  }
+}
+//Implement a function called, areThereDuplicates which accepts a variable number of arguments, and checks whether there are any duplicates among the arguments passed in.  You can solve this using the frequency counter pattern OR the multiple pointers pattern
+function areThereDuplicates() {
+  return new Set(arguments).size !== arguments.length;
+}
+console.log(areThereDuplicates(1,2,4,3,4))
+// My aproach
+function duplicates(...args){
+  args.sort()
+
+  let i = 0
+  for (let j = 1; i < args.length; j++){
+    if(args[i] === args[j]){
+      return true
+    }
+    i ++
+  }
+  return false
+}
+console.log(duplicates(1,2,3,3))
+
+//Write a function called averagePair. Given a sorted array of integers and a target average, determine if there is a pair of values in the array where the average of the pair equals the target average. There may be more than one pair that matches the average target.
+function averagePair(arr,num){
+
+  if(arr.length === 0){
+    return false
+  }
+
+  let i = 0
+  for(j = 1; j < arr.length; j++){
+    if((arr[i] + arr[j]) / 2 === num){
+      return true
+    }
+    i ++
+  }
+  return false
+}
+console.log(averagePair([],4))
+//at the end and at the beginning pointer
+function averagePair(arr, num) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    const avg = (arr[left] + arr[right]) / 2;
+
+    if (avg === num) {
+      return true;
+    } else if (avg < num) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return false;
+}
+console.log(averagePair([],4))
