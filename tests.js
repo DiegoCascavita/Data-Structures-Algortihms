@@ -1,64 +1,19 @@
-'use strict';
+function solution(sequence) {
+  let count = 0; // Number of violations
 
-const fs = require('fs');
+  for (let i = 1; i < sequence.length; i++) {
+    if (sequence[i] <= sequence[i - 1]) {
+      count++;
+      if (count > 1) {
+        return false;
+      }
 
-process.stdin.resume();
-process.stdin.setEncoding('utf-8');
-
-let inputString = '';
-let currentLine = 0;
-
-process.stdin.on('data', function(inputStdin) {
-    inputString += inputStdin;
-});
-
-process.stdin.on('end', function() {
-    inputString = inputString.split('\n');
-
-    main();
-});
-
-function readLine() {
-    return inputString[currentLine++];
-}
-
-/*
- * Complete the 'birthdayCakeCandles' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY candles as parameter.
- */
-
-function birthdayCakeCandles(candles) {
-    /*
-    1. Create a MaxVal
-    2. If arr[i] > MaxVal switch them
-    3. count ocurrences
-    */
-    let maxVal = -Infinity;
-    let counter = 0;
-    
-    for(let i = 0; i < candles.length; i++){
-        if(candles[i] > maxVal){
-           maxVal = candles[i];
-           counter = 1; //reset cos is a new max
-    } else if (candles[i] === maxVal){
-        counter ++
-        }
+      // Check if removing the current or previous element would fix the violation
+      if (i > 1 && i < sequence.length - 1 && sequence[i] <= sequence[i - 2] && sequence[i + 1] <= sequence[i - 1]) {
+        return false;
+      }
     }
-    return counter
-}
+  }
 
-function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
-
-    const candlesCount = parseInt(readLine().trim(), 10);
-
-    const candles = readLine().replace(/\s+$/g, '').split(' ').map(candlesTemp => parseInt(candlesTemp, 10));
-
-    const result = birthdayCakeCandles(candles);
-
-    ws.write(result + '\n');
-
-    ws.end();
+  return true;
 }
