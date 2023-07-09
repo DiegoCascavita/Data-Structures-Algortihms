@@ -1,31 +1,24 @@
-//REVESER STRING
-function reverse(str){ 
-    return str.split("").reverse().join("")
-}
-// console.log(reverse('eliana sofia guerrero rincon'))
-// console.log(reverse('diego alejandro cascavita'))
+/*
+1. frequency counter 
+2. if we found a duplicate duplicate ++
+3. Si frequencyCounter[value] es un valor truthy (diferente de undefined, null, 0, false, o una cadena vacía), se utiliza su valor actual. De lo contrario, si es undefined, se asigna el valor 0.
++ 1: Añade 1 al valor obtenido anteriormente. Esto incrementa el contador de frecuencias para el valor actual.
+4. else false
+*/
+function areThereDuplicates(...args){
+  const duplicates = {} // setup and object
+  
+  for(let i = 0; i < args.length; i++){
+    const value = args[i]
+    duplicates[value] = (duplicates[value] || 0) + 1
 
-//ADD (n) NUMBERS
-function add(n){
-    return n * (n + 1)  / 2
+    if(duplicates[value] > 1) return true
+  }
+  return false
 }
+console.log(areThereDuplicates(1,2,2))
 
 
-//COUNT CHARACTERS
-let countCharacters = (str)=>{
-    return str.length
-}
-// console.log(countCharacters('Eliana'))
-//Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
-function sameFrequency(num1, num2){
-  return [...num1.toString()]
-  .sort()
-  .join('') === [...num2.toString()]
-  .sort()
-  .join('')
-}
-console.log(sameFrequency(123,321))
-//-----------------------------PATERNS
 //                        FREQUENCY COUNTER
 
 //*write a function called same which compare 2 arrays, should return true if every value in the array es el resultado al cuadrado del segundo. *//
