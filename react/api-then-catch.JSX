@@ -1,12 +1,10 @@
 /*
 se usa then para hacer una cadena de promesas syncronas
 */ 
-
 import { useEffect, useState } from "react";
 import "./styles.css";
 
 //https://jsonplaceholder.typicode.com/users
-
 function App() {
 
   const [users, setUsers] = useState([]);

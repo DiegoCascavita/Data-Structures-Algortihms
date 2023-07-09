@@ -57,7 +57,19 @@ const definimos variables de sólo lectura (no confundir con inmutables),
 esto quiere decir que, cuando asignamos una variable, el nombre de esta 
 va estar asignada a un puntero en memoria, el cual no puede ser
  sobreescrito o reasignado.*/
- 
+
+ /*
+ El hoisting es un comportamiento en JavaScript que implica que las declaraciones de variables y funciones son movidas al comienzo de su ámbito antes de que se ejecute el código. Esto significa que, conceptualmente, puedes utilizar una variable o una función antes de declararla en tu código, ya que JavaScript "eleva" estas declaraciones al principio del ámbito en el que se encuentran.
+ */
+ console.log(x); // Output: undefined
+var x = 5;
+
+foo(); // Output: "Hello"
+
+function foo() {
+  console.log("Hello");
+}
+
                          FUNCTIONS
 
 /* function in JavaScript is similar to a procedure—a set
@@ -131,7 +143,12 @@ function caseInSwitch(val) {
 string ("me")
 array [24,32]
 const mydog =
-
+/* arrow functions
+En resumen, las arrow functions en JavaScript tienen un comportamiento diferente en términos de cómo manejan el contexto this, no tienen su propio objeto arguments y no pueden ser utilizadas como constructores.
+*/
+(a,b)=>{
+  return a + b
+}
                                       LOOPS
 const theArray = [];
 
