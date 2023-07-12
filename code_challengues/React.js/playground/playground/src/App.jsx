@@ -7,9 +7,9 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon');
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon/ditto');
         const data = await response.json();
-        setList(data.results);
+        setList(data.abilities);
       } catch (error) {
         console.log('Error', error);
       }
@@ -23,8 +23,8 @@ function App() {
       <ul>
         {list.map((item, index) => (
           <li key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.url}</p>
+            <h3>{item.ability.name}</h3>
+            <p>{item.ability.url}</p>
           </li>
         ))}
       </ul>
