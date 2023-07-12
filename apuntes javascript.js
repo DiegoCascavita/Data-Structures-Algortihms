@@ -1298,3 +1298,114 @@ const elemento3 = document.getElementsByClassName('x');
 const text = document.createTextNode('nuevo nodo');
 //despues de declararlas, se puede llamar en un nueva nueva instancia
 text.insertAdjacentElement()
+
+/* CLases y herencia de prototipos
+
+En JavaScript, las clases y la herencia se pueden implementar utilizando el sistema de prototipos. Aunque JavaScript no tiene una sintaxis de clase tradicional como otros lenguajes de programación orientados a objetos, puedes utilizar el mecanismo de prototipos para lograr la funcionalidad similar a las clases y la herencia.
+
+Clases en JavaScript
+En JavaScript, puedes definir una "clase" utilizando la sintaxis de función constructora o la sintaxis de clase introducida en ECMAScript 2015 (también conocido como ES6). La sintaxis de clase proporciona una forma más concisa y legible de definir una estructura de "clase" en JavaScript.
+
+Aquí tienes un ejemplo que muestra cómo definir una clase utilizando la sintaxis de clase:
+
+javascript
+Copy code
+*/
+class Persona {
+  constructor(nombre, edad) {
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+
+  saludar() {
+    console.log(`Hola, mi nombre es ${this.nombre}`);
+  }
+}
+// Crear una instancia de la clase Persona
+const persona1 = new Persona("Juan", 25);
+// Llamar al método saludar()
+persona1.saludar(); // Output: Hola, mi nombre es Juan
+/*
+En este ejemplo, Persona es una "clase" que tiene un constructor y un método llamado saludar(). El constructor se utiliza para inicializar los atributos de la clase, mientras que saludar() es un método que muestra un mensaje de saludo en la consola.
+
+Herencia de prototipos en JavaScript
+En JavaScript, la herencia se implementa a través de la cadena de prototipos. Cada objeto en JavaScript tiene un prototipo (prototype) al que está enlazado y hereda propiedades y métodos de él. Puedes establecer la herencia entre objetos utilizando el método Object.create() o la sintaxis de clase extendida.
+
+Aquí tienes un ejemplo que muestra cómo implementar la herencia de prototipos en JavaScript:
+
+javascript
+Copy code*/
+class Empleado extends Persona {
+  constructor(nombre, edad, salario) {
+    super(nombre, edad);
+    this.salario = salario;
+  }
+
+  mostrarSalario() {
+    console.log(`Mi salario es ${this.salario}`);
+  }
+}
+
+// Crear una instancia de la clase Empleado
+const empleado1 = new Empleado("Ana", 30, 5000);
+
+// Llamar a los métodos de la clase Empleado
+empleado1.saludar(); // Output: Hola, mi nombre es Ana
+empleado1.mostrarSalario(); // Output: Mi salario es 5000
+/*
+En este ejemplo, Empleado es una clase que extiende la clase Persona. Utilizamos la palabra clave extends para establecer la herencia y super() para llamar al constructor de la clase padre (Persona) con los parámetros correspondientes. Luego, definimos un nuevo atributo salario en la clase Empleado y un método mostrarSalario() que muestra el salario en la consola.
+
+Al crear una instancia de la clase Empleado y llamar a los métodos, podemos ver que tanto el método saludar() heredado de la clase Persona como el método mostrarSalario() definido en la clase Empleado están disponibles.
+
+Es importante tener en cuenta que en JavaScript, la herencia se basa en la cadena de prototipos, no en la copia de propiedades y métodos de una clase a otra. Cada objeto tiene una referencia a su prototipo y hereda las propiedades y métodos del prototipo. Esto permite compartir y reutilizar código de manera eficiente.
+
+                                clases y prototipos           
+
+Clases: Las clases en JavaScript son una característica introducida en ECMAScript 2015 (ES6) que proporciona una sintaxis más estructurada y orientada a objetos para definir objetos y su comportamiento. Las clases en JavaScript se definen utilizando la palabra clave class y pueden tener un constructor y métodos asociados. Al crear una instancia de una clase con new, se crea un objeto que hereda las propiedades y métodos de la clase.
+
+Prototipos: En JavaScript, los prototipos son un mecanismo que permite la herencia y la compartición de propiedades y métodos entre objetos. Cada objeto en JavaScript tiene un enlace a su prototipo, al que puede acceder mediante la propiedad especial prototype. Las propiedades y métodos definidos en el prototipo están disponibles para todos los objetos que se creen a partir de ese prototipo. Para crear objetos a partir de un prototipo, se utiliza el método Object.create() o la función constructora.
+
+funciones puras
+
+las funciones puras en javascript son las que retornan siempre el mismo valor sin mutar ni ningun side efects con low mismos parametros, Math.random() NO!! es una funcion pura, ya que siempre retorna un valor diferente, en cambio Math.floor() si es una funcion pura, ya que siempre retorna el mismo valor con los mismos parametros.
+*/
+function sumar(a, b) {
+  return a + b;
+}
+/* PASAR COMO VALOR O REFERENCIA 
+En JavaScript, al pasar valores a funciones, se puede hacer de dos formas: por valor y por referencia.
+
+Pasar por valor: Cuando pasas un valor primitivo (como un número, una cadena de texto o un booleano) a una función, se pasa una copia independiente del valor original. Cualquier modificación realizada dentro de la función no afectará el valor original fuera de ella.
+Por ejemplo:
+
+javascript
+Copy code*/
+function modificarNumero(numero) {
+  numero = 10;
+  console.log(numero); // 10
+}
+
+let num = 5;
+modificarNumero(num);
+console.log(num); // 5
+/*
+En este caso, el valor original de num fuera de la función no se modifica, ya que se pasó una copia del valor a la función.
+
+Pasar por referencia: Cuando pasas un objeto (como un objeto literal, un array o incluso una función) a una función, se pasa una referencia al objeto original. Esto significa que cualquier modificación realizada dentro de la función afectará al objeto original fuera de ella.
+Por ejemplo:
+
+javascript
+Copy code*/
+function modificarArray(arr) {
+  arr.push(4);
+  console.log(arr); // [1, 2, 3, 4]
+}
+
+let array1 = [1, 2, 3];
+modificarArray(array);
+console.log(array); // [1, 2, 3, 4]
+/*
+En este caso, la función modificarArray modificó el objeto array original, ya que se pasó una referencia al mismo.
+
+Es importante tener en cuenta estas diferencias al trabajar con funciones en JavaScript, ya que el comportamiento puede variar según si se pasa por valor o por referencia.
+*/
